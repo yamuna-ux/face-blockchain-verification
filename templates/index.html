@@ -1,0 +1,3821 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>FaceID Security Platform</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+
+    <!-- Dashboard CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div class="app-shell">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="sidebar-brand">
+
+            <div class="brand-logo">
+
+                <i class="bi bi-fingerprint"></i>
+
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+
+                    Face<span>ID</span>
+
+                </div>
+
+                <span class="brand-subtitle">
+
+                    SECURITY PLATFORM
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MENU -->
+
+        <div class="sidebar-menu">
+
+
+            <div class="menu-label">
+
+                Main Menu
+
+            </div>
+
+
+            <!-- DASHBOARD -->
+
+            <a
+                href="#"
+                class="sidebar-link active"
+                data-section="dashboardSection">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <!-- REGISTER -->
+
+            <a
+                href="/register"
+                class="sidebar-link">
+
+                <i class="bi bi-person-plus-fill"></i>
+
+                <span>Register Identity</span>
+
+            </a>
+
+
+            <!-- VERIFY -->
+
+            <a
+                href="/verify"
+                class="sidebar-link">
+
+                <i class="bi bi-shield-check"></i>
+
+                <span>Verify Face</span>
+
+            </a>
+
+
+            <!-- IDENTITY REGISTRY -->
+
+            <a
+                href="#"
+                class="sidebar-link"
+                data-section="registrySection">
+
+                <i class="bi bi-people-fill"></i>
+
+                <span>Identity Registry</span>
+
+            </a>
+
+
+            <!-- BLOCKCHAIN -->
+
+            <a
+                href="#"
+                class="sidebar-link"
+                data-section="blockchainSection">
+
+                <i class="bi bi-boxes"></i>
+
+                <span>Blockchain Ledger</span>
+
+            </a>
+
+
+            <!-- HISTORY -->
+
+            <a
+                href="#"
+                class="sidebar-link"
+                data-section="historySection">
+
+                <i class="bi bi-clock-history"></i>
+
+                <span>Verification History</span>
+
+            </a>
+
+
+            <div class="menu-label">
+
+                System
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <a
+                href="#"
+                class="sidebar-link"
+                data-section="securitySection">
+
+                <i class="bi bi-shield-lock-fill"></i>
+
+                <span>Security Monitor</span>
+
+            </a>
+
+
+            <!-- LOGS -->
+
+            <a
+                href="#"
+                class="sidebar-link"
+                data-section="logsSection">
+
+                <i class="bi bi-terminal-fill"></i>
+
+                <span>System Logs</span>
+
+            </a>
+
+
+            <!-- SETTINGS -->
+
+            <a
+                href="#"
+                class="sidebar-link"
+                data-section="settingsSection">
+
+                <i class="bi bi-gear-fill"></i>
+
+                <span>Settings</span>
+
+            </a>
+
+        </div>
+
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+
+            <div class="system-mini-card">
+
+                <div class="system-mini-top">
+
+                    <div class="system-mini-icon">
+
+                        <i class="bi bi-shield-check"></i>
+
+                    </div>
+
+                    <span>
+
+                        System Secure
+
+                    </span>
+
+                </div>
+
+
+                <p>
+
+                    All security services operational
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN WRAPPER
+    ================================================== -->
+
+    <div class="main-wrapper">
+
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
+
+        <header class="topbar">
+
+
+            <div class="breadcrumb-area">
+
+
+                <!-- MOBILE MENU -->
+
+                <button
+                    class="mobile-menu-btn"
+                    id="mobileMenuButton"
+                    type="button">
+
+                    <i class="bi bi-list"></i>
+
+                </button>
+
+
+                <span>
+
+                    Security Platform
+
+                </span>
+
+
+                <i class="bi bi-chevron-right"></i>
+
+
+                <strong id="breadcrumbCurrent">
+
+                    Dashboard
+
+                </strong>
+
+
+            </div>
+
+
+
+            <!-- TOPBAR RIGHT -->
+
+            <div class="topbar-right">
+
+
+                <!-- ONLINE -->
+
+                <div class="online-status">
+
+                    <span class="online-dot"></span>
+
+                    ONLINE
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div
+                    class="live-clock"
+                    id="liveClock">
+
+                    --:--:--
+
+                </div>
+
+
+                <!-- NOTIFICATION -->
+
+                <div style="position: relative;">
+
+                    <button
+                        type="button"
+                        class="topbar-icon"
+                        id="notificationButton"
+                        title="Notifications">
+
+                        <i class="bi bi-bell"></i>
+
+                        <span
+                            class="notification-badge">
+
+                            1
+
+                        </span>
+
+                    </button>
+
+
+                    <!-- NOTIFICATION PANEL -->
+
+                    <div
+                        class="notification-panel"
+                        id="notificationPanel">
+
+
+                        <div class="panel-header">
+
+                            <h4>
+
+                                Notifications
+
+                            </h4>
+
+                            <span
+                                id="clearNotifications"
+                                style="cursor:pointer;">
+
+                                Clear
+
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="notification-item"
+                            id="statusNotification">
+
+
+                            <div class="notification-icon">
+
+                                <i class="bi bi-shield-check"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    System secure
+
+                                </strong>
+
+                                <p>
+
+                                    Blockchain integrity verified.
+
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="notification-item">
+
+                            <div class="notification-icon">
+
+                                <i class="bi bi-cpu"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    AI engine ready
+
+                                </strong>
+
+                                <p>
+
+                                    Face recognition engine is available.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="notification-item">
+
+                            <div class="notification-icon">
+
+                                <i class="bi bi-database-check"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+
+                                    Registry available
+
+                                </strong>
+
+                                <p>
+
+                                    Identity registry is synchronized.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ADMIN -->
+
+                <div style="position: relative;">
+
+
+                    <div
+                        class="admin-profile"
+                        id="adminButton">
+
+
+                        <div class="admin-avatar">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+
+                        <div class="admin-info">
+
+                            <strong>
+
+                                Administrator
+
+                            </strong>
+
+                            <small>
+
+                                System Admin
+
+                            </small>
+
+                        </div>
+
+
+                        <i class="bi bi-chevron-down"
+                           style="font-size:9px;color:#8aa0ae;"></i>
+
+
+                    </div>
+
+
+                    <!-- ADMIN PANEL -->
+
+                    <div
+                        class="admin-panel"
+                        id="adminPanel">
+
+
+                        <div class="panel-header">
+
+                            <h4>
+
+                                Administrator
+
+                            </h4>
+
+                            <span>
+
+                                ACTIVE
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="admin-large-avatar">
+
+                            <i class="bi bi-person-badge-fill"></i>
+
+                        </div>
+
+
+                        <h3>
+
+                            System Administrator
+
+                        </h3>
+
+
+                        <p>
+
+                            FaceID Blockchain Security Platform administrator.
+
+                        </p>
+
+
+                        <div class="admin-details">
+
+
+                            <div class="admin-detail-row">
+
+                                <span>Role</span>
+
+                                <strong>Administrator</strong>
+
+                            </div>
+
+
+                            <div class="admin-detail-row">
+
+                                <span>Access</span>
+
+                                <strong>Full System</strong>
+
+                            </div>
+
+
+                            <div class="admin-detail-row">
+
+                                <span>Authentication</span>
+
+                                <strong>Secure</strong>
+
+                            </div>
+
+
+                            <div class="admin-detail-row">
+
+                                <span>Session</span>
+
+                                <strong>Active</strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+        ================================================== -->
+
+        <main class="dashboard-content">
+
+
+
+            <!-- =================================================
+                 DASHBOARD SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section active"
+                id="dashboardSection">
+
+
+                <!-- HERO -->
+
+                <div class="hero-header">
+
+
+                    <div>
+
+
+                        <div class="hero-eyebrow">
+
+                            Biometric Security Center
+
+                        </div>
+
+
+                        <h1>
+
+                            Identity
+
+                            <span class="gradient-text">
+
+                                Command Center
+
+                            </span>
+
+                        </h1>
+
+
+                        <p>
+
+                            Monitor facial identity verification,
+                            cryptographic integrity and blockchain
+                            security from a single professional dashboard.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="hero-actions">
+
+
+                        <a
+                            href="/register"
+                            class="btn-modern btn-primary-modern">
+
+                            <i class="bi bi-person-plus-fill"></i>
+
+                            Register Identity
+
+                        </a>
+
+
+                        <a
+                            href="/verify"
+                            class="btn-modern btn-secondary-modern">
+
+                            <i class="bi bi-shield-check"></i>
+
+                            Verify Face
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- SECURITY STATUS -->
+
+                <div class="security-status-card">
+
+
+                    <div class="security-left">
+
+
+                        <div class="security-icon-large">
+
+                            <i class="bi bi-shield-check"></i>
+
+                        </div>
+
+
+                        <div class="security-text">
+
+                            <small>
+
+                                SECURITY STATUS
+
+                            </small>
+
+
+                            <strong id="systemStatus">
+
+                                SYSTEM SECURE
+
+                            </strong>
+
+
+                            <p>
+
+                                Biometric verification and blockchain
+                                integrity are operational.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="status-check">
+
+                            <i class="bi bi-check-lg"></i>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="last-check">
+
+
+                        <small>
+
+                            LAST SYSTEM CHECK
+
+                        </small>
+
+
+                        <strong id="lastSystemCheck">
+
+                            Just now
+
+                        </strong>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     STATISTICS
+                ================================================== -->
+
+                <div class="stats-grid">
+
+
+                    <!-- IDENTITIES -->
+
+                    <div class="stat-card-modern">
+
+
+                        <div class="stat-top">
+
+
+                            <div class="stat-icon-modern">
+
+                                <i class="bi bi-people-fill"></i>
+
+                            </div>
+
+
+                            <span class="stat-tag">
+
+                                ↑ ACTIVE
+
+                            </span>
+
+
+                        </div>
+
+
+                        <small>
+
+                            REGISTERED IDENTITIES
+
+                        </small>
+
+
+                        <div
+                            class="stat-value"
+                            data-stat="identities">
+
+                            {{ identities|length }}
+
+                        </div>
+
+
+                        <div class="stat-footer">
+
+                            <i class="bi bi-database"></i>
+
+                            Identity Registry
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- BLOCKS -->
+
+                    <div class="stat-card-modern">
+
+
+                        <div class="stat-top">
+
+
+                            <div class="stat-icon-modern">
+
+                                <i class="bi bi-boxes"></i>
+
+                            </div>
+
+
+                            <span class="stat-tag">
+
+                                ✓ VALID
+
+                            </span>
+
+
+                        </div>
+
+
+                        <small>
+
+                            BLOCKCHAIN BLOCKS
+
+                        </small>
+
+
+                        <div
+                            class="stat-value"
+                            data-stat="blocks">
+
+                            {{ blocks }}
+
+                        </div>
+
+
+                        <div class="stat-footer">
+
+                            <i class="bi bi-link-45deg"></i>
+
+                            SHA-256 Ledger
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- EMBEDDING -->
+
+                    <div class="stat-card-modern">
+
+
+                        <div class="stat-top">
+
+
+                            <div class="stat-icon-modern">
+
+                                <i class="bi bi-cpu-fill"></i>
+
+                            </div>
+
+
+                            <span class="stat-tag">
+
+                                ↑ READY
+
+                            </span>
+
+
+                        </div>
+
+
+                        <small>
+
+                            FACE EMBEDDING
+
+                        </small>
+
+
+                        <div class="stat-value">
+
+                            512-D
+
+                        </div>
+
+
+                        <div class="stat-footer">
+
+                            <i class="bi bi-stars"></i>
+
+                            InsightFace Engine
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- SECURITY -->
+
+                    <div class="stat-card-modern">
+
+
+                        <div class="stat-top">
+
+
+                            <div class="stat-icon-modern">
+
+                                <i class="bi bi-shield-fill-check"></i>
+
+                            </div>
+
+
+                            <span class="stat-tag">
+
+                                ✓ SECURE
+
+                            </span>
+
+
+                        </div>
+
+
+                        <small>
+
+                            LEDGER INTEGRITY
+
+                        </small>
+
+
+                        <div
+                            class="stat-value"
+                            data-stat="blockchain">
+
+                            {{ "VALID" if blockchain_valid else "INVALID" }}
+
+                        </div>
+
+
+                        <div class="stat-footer">
+
+                            <i class="bi bi-lock-fill"></i>
+
+                            Tamper Detection
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ENGINE + SECURITY MONITOR
+                ================================================== -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- FACE ENGINE -->
+
+                    <div class="dashboard-card face-engine">
+
+
+                        <div class="card-header-modern">
+
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    AI BIOMETRIC ENGINE
+
+                                </small>
+
+
+                                <h3>
+
+                                    Face Verification
+
+                                </h3>
+
+                            </div>
+
+
+                            <strong
+                                class="card-status">
+
+                                ENGINE ONLINE
+
+                            </strong>
+
+
+                        </div>
+
+
+
+                        <div class="face-engine-content">
+
+
+                            <!-- SCANNER -->
+
+                            <div class="scanner-wrapper">
+
+
+                                <div class="scanner">
+
+
+                                    <div class="scanner-face">
+
+                                        <i class="bi bi-person-fill"></i>
+
+                                    </div>
+
+
+                                    <div class="scanner-line"></div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <!-- ENGINE DETAILS -->
+
+                            <div class="engine-details">
+
+
+                                <div class="engine-title">
+
+
+                                    <div class="engine-icon">
+
+                                        <i class="bi bi-camera-fill"></i>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+
+                                            Biometric Scanner
+
+                                        </strong>
+
+
+                                        <small>
+
+                                            Ready for verification
+
+                                        </small>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="engine-info-grid">
+
+
+                                    <div class="engine-info">
+
+                                        <span>
+
+                                            Model
+
+                                        </span>
+
+                                        <strong>
+
+                                            Buffalo_L
+
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="engine-info">
+
+                                        <span>
+
+                                            Embedding
+
+                                        </span>
+
+                                        <strong>
+
+                                            512-D
+
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="engine-info">
+
+                                        <span>
+
+                                            Threshold
+
+                                        </span>
+
+                                        <strong>
+
+                                            0.40
+
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="engine-info">
+
+                                        <span>
+
+                                            Provider
+
+                                        </span>
+
+                                        <strong>
+
+                                            CPU
+
+                                        </strong>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <a
+                                    href="/verify"
+                                    class="btn-modern btn-primary-modern start-verification">
+
+                                    <i class="bi bi-camera"></i>
+
+                                    Start Face Verification
+
+                                    <i
+                                        class="bi bi-arrow-right ms-auto"></i>
+
+                                </a>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- SECURITY MONITOR -->
+
+                    <div class="dashboard-card">
+
+
+                        <div class="card-header-modern">
+
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    REAL-TIME MONITOR
+
+                                </small>
+
+
+                                <h3>
+
+                                    Security Monitor
+
+                                </h3>
+
+                            </div>
+
+
+                            <i
+                                class="bi bi-three-dots"
+                                style="color:#8aa0ae;"></i>
+
+
+                        </div>
+
+
+
+                        <div class="card-body-modern">
+
+
+                            <div class="monitor-list">
+
+
+                                <!-- FACE DETECTION -->
+
+                                <div class="monitor-item">
+
+
+                                    <div class="monitor-icon">
+
+                                        <i class="bi bi-camera-fill"></i>
+
+                                    </div>
+
+
+                                    <div class="monitor-info">
+
+                                        <strong>
+
+                                            Face Detection
+
+                                        </strong>
+
+                                        <small>
+
+                                            InsightFace detector
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <span class="monitor-state">
+
+                                        ONLINE
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <!-- EMBEDDING -->
+
+                                <div class="monitor-item">
+
+
+                                    <div class="monitor-icon">
+
+                                        <i class="bi bi-cpu-fill"></i>
+
+                                    </div>
+
+
+                                    <div class="monitor-info">
+
+                                        <strong>
+
+                                            Embedding Engine
+
+                                        </strong>
+
+                                        <small>
+
+                                            512-dimensional vectors
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <span class="monitor-state">
+
+                                        ONLINE
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <!-- HASH -->
+
+                                <div class="monitor-item">
+
+
+                                    <div class="monitor-icon">
+
+                                        <i class="bi bi-lock-fill"></i>
+
+                                    </div>
+
+
+                                    <div class="monitor-info">
+
+                                        <strong>
+
+                                            SHA-256 Hashing
+
+                                        </strong>
+
+                                        <small>
+
+                                            Cryptographic integrity
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <span class="monitor-state">
+
+                                        ONLINE
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <!-- BLOCKCHAIN -->
+
+                                <div class="monitor-item">
+
+
+                                    <div class="monitor-icon">
+
+                                        <i class="bi bi-boxes"></i>
+
+                                    </div>
+
+
+                                    <div class="monitor-info">
+
+                                        <strong>
+
+                                            Blockchain Ledger
+
+                                        </strong>
+
+                                        <small>
+
+                                            Hash-linked records
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <span class="monitor-state">
+
+                                        VALID
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <!-- FLASK -->
+
+                                <div class="monitor-item">
+
+
+                                    <div class="monitor-icon">
+
+                                        <i class="bi bi-server"></i>
+
+                                    </div>
+
+
+                                    <div class="monitor-info">
+
+                                        <strong>
+
+                                            Flask API
+
+                                        </strong>
+
+                                        <small>
+
+                                            Local verification service
+
+                                        </small>
+
+                                    </div>
+
+
+                                    <span class="monitor-state">
+
+                                        ONLINE
+
+                                    </span>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     REGISTRY + BLOCKCHAIN
+                ================================================== -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- IDENTITY REGISTRY -->
+
+                    <div class="dashboard-card registry-card">
+
+
+                        <div class="card-header-modern">
+
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    IDENTITY MANAGEMENT
+
+                                </small>
+
+
+                                <h3>
+
+                                    Identity Registry
+
+                                </h3>
+
+                            </div>
+
+
+                            <a
+                                href="#"
+                                data-section-link="registrySection"
+                                style="font-size:9px;color:#0284c7;font-weight:700;">
+
+                                View All
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+
+                        </div>
+
+
+                        <div
+                            class="card-body-modern"
+                            style="padding:0;overflow-x:auto;">
+
+
+                            {% if identities %}
+
+
+                            <table class="registry-table">
+
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Identity
+
+                                        </th>
+
+                                        <th>
+
+                                            Registered
+
+                                        </th>
+
+                                        <th>
+
+                                            Embedding
+
+                                        </th>
+
+                                        <th>
+
+                                            Security
+
+                                        </th>
+
+                                        <th>
+
+                                            Status
+
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+
+                                    {% for identity in identities %}
+
+
+                                    <tr>
+
+
+                                        <td>
+
+
+                                            <div class="identity-cell">
+
+
+                                                <div class="identity-avatar-modern">
+
+                                                    <i class="bi bi-person-fill"></i>
+
+                                                </div>
+
+
+                                                <div>
+
+                                                    <strong>
+
+                                                        {{ identity.identity_id }}
+
+                                                    </strong>
+
+
+                                                    <small>
+
+                                                        Biometric identity
+
+                                                    </small>
+
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </td>
+
+
+                                        <td>
+
+                                            {{ identity.created_at[:19].replace("T"," ") }}
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <span class="badge-modern badge-blue">
+
+                                                <i class="bi bi-cpu"></i>
+
+                                                512-D
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <span class="badge-modern badge-green">
+
+                                                <i class="bi bi-lock-fill"></i>
+
+                                                SHA-256
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <td>
+
+                                            <span class="badge-modern badge-green">
+
+                                                <i class="bi bi-check-circle-fill"></i>
+
+                                                VERIFIED
+
+                                            </span>
+
+                                        </td>
+
+
+                                    </tr>
+
+
+                                    {% endfor %}
+
+
+                                </tbody>
+
+
+                            </table>
+
+
+                            {% else %}
+
+
+                            <div class="history-empty">
+
+                                <i class="bi bi-person-x"></i>
+
+                                <h4>
+
+                                    No identities registered
+
+                                </h4>
+
+                                <p>
+
+                                    Register a face to create
+                                    the first blockchain identity.
+
+                                </p>
+
+
+                                <a
+                                    href="/register"
+                                    class="btn-modern btn-primary-modern"
+                                    style="margin-top:15px;">
+
+                                    <i class="bi bi-person-plus"></i>
+
+                                    Register Identity
+
+                                </a>
+
+                            </div>
+
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- BLOCKCHAIN -->
+
+                    <div class="dashboard-card blockchain-card">
+
+
+                        <div class="card-header-modern">
+
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    DISTRIBUTED LEDGER
+
+                                </small>
+
+
+                                <h3>
+
+                                    Blockchain Integrity
+
+                                </h3>
+
+                            </div>
+
+
+                            <span
+                                class="card-status">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                {{ "VALID" if blockchain_valid else "INVALID" }}
+
+                            </span>
+
+
+                        </div>
+
+
+                        <div class="card-body-modern">
+
+
+                            <div class="chain-visual">
+
+
+                                <div class="chain-node">
+
+
+                                    <div class="chain-icon">
+
+                                        <i class="bi bi-box"></i>
+
+                                    </div>
+
+
+                                    <small>
+
+                                        BLOCK 00
+
+                                    </small>
+
+
+                                    <strong>
+
+                                        GENESIS
+
+                                    </strong>
+
+
+                                </div>
+
+
+                                <div class="chain-line"></div>
+
+
+                                <div class="chain-node">
+
+
+                                    <div class="chain-icon">
+
+                                        <i class="bi bi-link-45deg"></i>
+
+                                    </div>
+
+
+                                    <small>
+
+                                        BLOCKS
+
+                                    </small>
+
+
+                                    <strong>
+
+                                        {{ blocks }}
+
+                                    </strong>
+
+
+                                </div>
+
+
+                                <div class="chain-line"></div>
+
+
+                                <div class="chain-node">
+
+
+                                    <div class="chain-icon">
+
+                                        <i class="bi bi-shield-check"></i>
+
+                                    </div>
+
+
+                                    <small>
+
+                                        INTEGRITY
+
+                                    </small>
+
+
+                                    <strong>
+
+                                        {{ "VALID" if blockchain_valid else "CHECK" }}
+
+                                    </strong>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="blockchain-meta">
+
+
+                                <div>
+
+                                    <span>
+
+                                        Cryptographic Algorithm
+
+                                    </span>
+
+                                    <strong>
+
+                                        SHA-256
+
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+
+                                        Consensus Model
+
+                                    </span>
+
+                                    <strong>
+
+                                        Hash-Linked Ledger
+
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+
+                                        Biometric Storage
+
+                                    </span>
+
+                                    <strong>
+
+                                        OFF-CHAIN
+
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ACTIVITY + PIPELINE
+                ================================================== -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- ACTIVITY -->
+
+                    <div class="dashboard-card activity-card">
+
+
+                        <div class="card-header-modern">
+
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    SYSTEM ACTIVITY
+
+                                </small>
+
+
+                                <h3>
+
+                                    Recent Activity
+
+                                </h3>
+
+                            </div>
+
+
+                            <span class="card-status">
+
+                                ● LIVE
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity-list">
+
+
+                            <div class="activity-item">
+
+
+                                <div class="activity-icon">
+
+                                    <i class="bi bi-shield-check"></i>
+
+                                </div>
+
+
+                                <div class="activity-content">
+
+                                    <strong>
+
+                                        Blockchain integrity verified
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        Hash-linked ledger validation completed
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="activity-time">
+
+                                    NOW
+
+                                </span>
+
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+
+                                <div class="activity-icon">
+
+                                    <i class="bi bi-cpu"></i>
+
+                                </div>
+
+
+                                <div class="activity-content">
+
+                                    <strong>
+
+                                        Face recognition engine ready
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        InsightFace Buffalo_L model loaded
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="activity-time">
+
+                                    READY
+
+                                </span>
+
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+
+                                <div class="activity-icon">
+
+                                    <i class="bi bi-database-check"></i>
+
+                                </div>
+
+
+                                <div class="activity-content">
+
+                                    <strong>
+
+                                        Identity registry synchronized
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        Local biometric records available
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="activity-time">
+
+                                    SYNC
+
+                                </span>
+
+
+                            </div>
+
+
+                            <div class="activity-item">
+
+
+                                <div class="activity-icon">
+
+                                    <i class="bi bi-server"></i>
+
+                                </div>
+
+
+                                <div class="activity-content">
+
+                                    <strong>
+
+                                        Verification API online
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        Flask verification service operational
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="activity-time">
+
+                                    ONLINE
+
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PIPELINE -->
+
+                    <div class="dashboard-card pipeline-card">
+
+
+                        <div class="card-header-modern">
+
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    SYSTEM ARCHITECTURE
+
+                                </small>
+
+
+                                <h3>
+
+                                    Verification Pipeline
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="pipeline">
+
+
+                            <div class="pipeline-step">
+
+                                <div class="pipeline-icon">
+
+                                    <i class="bi bi-camera"></i>
+
+                                </div>
+
+                                <strong>
+
+                                    Capture
+
+                                </strong>
+
+                                <small>
+
+                                    Face image
+
+                                </small>
+
+                            </div>
+
+
+                            <div class="pipeline-line"></div>
+
+
+                            <div class="pipeline-step">
+
+                                <div class="pipeline-icon">
+
+                                    <i class="bi bi-person-bounding-box"></i>
+
+                                </div>
+
+                                <strong>
+
+                                    Detect
+
+                                </strong>
+
+                                <small>
+
+                                    Face detection
+
+                                </small>
+
+                            </div>
+
+
+                            <div class="pipeline-line"></div>
+
+
+                            <div class="pipeline-step">
+
+                                <div class="pipeline-icon">
+
+                                    <i class="bi bi-cpu"></i>
+
+                                </div>
+
+                                <strong>
+
+                                    Embed
+
+                                </strong>
+
+                                <small>
+
+                                    512-D vector
+
+                                </small>
+
+                            </div>
+
+
+                            <div class="pipeline-line"></div>
+
+
+                            <div class="pipeline-step">
+
+                                <div class="pipeline-icon">
+
+                                    <i class="bi bi-fingerprint"></i>
+
+                                </div>
+
+                                <strong>
+
+                                    Hash
+
+                                </strong>
+
+                                <small>
+
+                                    SHA-256
+
+                                </small>
+
+                            </div>
+
+
+                            <div class="pipeline-line"></div>
+
+
+                            <div class="pipeline-step">
+
+                                <div class="pipeline-icon">
+
+                                    <i class="bi bi-shield-check"></i>
+
+                                </div>
+
+                                <strong>
+
+                                    Verify
+
+                                </strong>
+
+                                <small>
+
+                                    Match
+
+                                </small>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="pipeline-note">
+
+                            <i class="bi bi-info-circle"></i>
+
+                            Face embeddings remain off-chain.
+                            Cryptographic hashes provide tamper-evident
+                            identity verification.
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 IDENTITY REGISTRY SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section"
+                id="registrySection">
+
+
+                <div class="section-title">
+
+                    <small>
+
+                        IDENTITY MANAGEMENT
+
+                    </small>
+
+
+                    <h2>
+
+                        Identity Registry
+
+                    </h2>
+
+
+                    <p>
+
+                        View and manage registered biometric identities.
+
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-card full-width-card">
+
+
+                    <div class="card-header-modern">
+
+
+                        <div class="registry-search">
+
+
+                            <div class="search-box">
+
+                                <i class="bi bi-search"></i>
+
+                                <input
+                                    type="text"
+                                    id="registrySearch"
+                                    placeholder="Search identity...">
+
+                            </div>
+
+
+                        </div>
+
+
+                        <a
+                            href="/register"
+                            class="btn-modern btn-primary-modern">
+
+                            <i class="bi bi-person-plus"></i>
+
+                            Add Identity
+
+                        </a>
+
+
+                    </div>
+
+
+                    <div
+                        style="overflow-x:auto;">
+
+
+                        {% if identities %}
+
+
+                        <table class="registry-table">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Identity</th>
+
+                                    <th>Registered</th>
+
+                                    <th>Embedding</th>
+
+                                    <th>Security</th>
+
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+
+                                {% for identity in identities %}
+
+
+                                <tr>
+
+
+                                    <td>
+
+                                        <div class="identity-cell">
+
+                                            <div class="identity-avatar-modern">
+
+                                                <i class="bi bi-person-fill"></i>
+
+                                            </div>
+
+                                            <div>
+
+                                                <strong>
+
+                                                    {{ identity.identity_id }}
+
+                                                </strong>
+
+                                                <small>
+
+                                                    Biometric identity
+
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        {{ identity.created_at[:19].replace("T"," ") }}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="badge-modern badge-blue">
+
+                                            <i class="bi bi-cpu"></i>
+
+                                            512-D
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="badge-modern badge-green">
+
+                                            <i class="bi bi-lock-fill"></i>
+
+                                            SHA-256
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="badge-modern badge-green">
+
+                                            <i class="bi bi-check-circle"></i>
+
+                                            VERIFIED
+
+                                        </span>
+
+                                    </td>
+
+
+                                </tr>
+
+
+                                {% endfor %}
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                        {% else %}
+
+
+                        <div class="history-empty">
+
+                            <i class="bi bi-person-x"></i>
+
+                            <h4>
+
+                                No identities registered
+
+                            </h4>
+
+                            <p>
+
+                                Register your first biometric identity.
+
+                            </p>
+
+                            <a
+                                href="/register"
+                                class="btn-modern btn-primary-modern"
+                                style="margin-top:15px;">
+
+                                Register Identity
+
+                            </a>
+
+                        </div>
+
+
+                        {% endif %}
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 BLOCKCHAIN SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section"
+                id="blockchainSection">
+
+
+                <div class="section-title">
+
+                    <small>
+
+                        DISTRIBUTED LEDGER
+
+                    </small>
+
+
+                    <h2>
+
+                        Blockchain Ledger
+
+                    </h2>
+
+
+                    <p>
+
+                        Monitor cryptographic records and blockchain integrity.
+
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+
+                    <div class="dashboard-card">
+
+
+                        <div class="card-header-modern">
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    LEDGER STATUS
+
+                                </small>
+
+                                <h3>
+
+                                    Blockchain Integrity
+
+                                </h3>
+
+                            </div>
+
+
+                            <span class="card-status">
+
+                                {{ "VALID" if blockchain_valid else "INVALID" }}
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="card-body-modern">
+
+
+                            <div class="chain-visual">
+
+
+                                <div class="chain-node">
+
+                                    <div class="chain-icon">
+
+                                        <i class="bi bi-box"></i>
+
+                                    </div>
+
+                                    <small>BLOCK 00</small>
+
+                                    <strong>GENESIS</strong>
+
+                                </div>
+
+
+                                <div class="chain-line"></div>
+
+
+                                <div class="chain-node">
+
+                                    <div class="chain-icon">
+
+                                        <i class="bi bi-link-45deg"></i>
+
+                                    </div>
+
+                                    <small>BLOCKS</small>
+
+                                    <strong>{{ blocks }}</strong>
+
+                                </div>
+
+
+                                <div class="chain-line"></div>
+
+
+                                <div class="chain-node">
+
+                                    <div class="chain-icon">
+
+                                        <i class="bi bi-shield-check"></i>
+
+                                    </div>
+
+                                    <small>STATUS</small>
+
+                                    <strong>
+
+                                        {{ "VALID" if blockchain_valid else "INVALID" }}
+
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="blockchain-meta">
+
+
+                                <div>
+
+                                    <span>
+
+                                        Algorithm
+
+                                    </span>
+
+                                    <strong>
+
+                                        SHA-256
+
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+
+                                        Ledger
+
+                                    </span>
+
+                                    <strong>
+
+                                        Hash Linked
+
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+
+                                        Storage
+
+                                    </span>
+
+                                    <strong>
+
+                                        OFF-CHAIN
+
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="dashboard-card">
+
+
+                        <div class="card-header-modern">
+
+                            <div class="card-heading">
+
+                                <small>
+
+                                    BLOCKCHAIN METRICS
+
+                                </small>
+
+                                <h3>
+
+                                    Ledger Statistics
+
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card-body-modern">
+
+
+                            <div class="security-service">
+
+                                <div class="security-service-icon">
+
+                                    <i class="bi bi-boxes"></i>
+
+                                </div>
+
+
+                                <div class="security-service-info">
+
+                                    <strong>
+
+                                        Total Blocks
+
+                                    </strong>
+
+                                    <p>
+
+                                        Current blockchain records
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="service-online">
+
+                                    {{ blocks }}
+
+                                </span>
+
+                            </div>
+
+
+                            <br>
+
+
+                            <div class="security-service">
+
+                                <div class="security-service-icon">
+
+                                    <i class="bi bi-shield-check"></i>
+
+                                </div>
+
+
+                                <div class="security-service-info">
+
+                                    <strong>
+
+                                        Integrity
+
+                                    </strong>
+
+                                    <p>
+
+                                        Cryptographic validation status
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="service-online">
+
+                                    {{ "VALID" if blockchain_valid else "INVALID" }}
+
+                                </span>
+
+                            </div>
+
+
+                            <br>
+
+
+                            <div class="security-service">
+
+                                <div class="security-service-icon">
+
+                                    <i class="bi bi-lock"></i>
+
+                                </div>
+
+
+                                <div class="security-service-info">
+
+                                    <strong>
+
+                                        Hash Algorithm
+
+                                    </strong>
+
+                                    <p>
+
+                                        Identity integrity protection
+
+                                    </p>
+
+                                </div>
+
+
+                                <span class="service-online">
+
+                                    SHA-256
+
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 HISTORY SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section"
+                id="historySection">
+
+
+                <div class="section-title">
+
+                    <small>
+
+                        VERIFICATION ACTIVITY
+
+                    </small>
+
+
+                    <h2>
+
+                        Verification History
+
+                    </h2>
+
+
+                    <p>
+
+                        Previous face verification activity recorded by this browser.
+
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+
+                    <div
+                        class="card-header-modern">
+
+
+                        <div class="card-heading">
+
+                            <small>
+
+                                ACTIVITY LOG
+
+                            </small>
+
+
+                            <h3>
+
+                                Recent Verifications
+
+                            </h3>
+
+                        </div>
+
+
+                        <button
+                            class="btn-modern btn-secondary-modern"
+                            onclick="localStorage.removeItem('faceid_verification_history'); Dashboard.loadVerificationHistory();">
+
+                            <i class="bi bi-trash"></i>
+
+                            Clear History
+
+                        </button>
+
+
+                    </div>
+
+
+                    <div
+                        id="verificationHistory"
+                        class="activity-list">
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SECURITY SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section"
+                id="securitySection">
+
+
+                <div class="section-title">
+
+                    <small>
+
+                        SYSTEM SECURITY
+
+                    </small>
+
+
+                    <h2>
+
+                        Security Monitor
+
+                    </h2>
+
+
+                    <p>
+
+                        Monitor all components involved in biometric verification.
+
+                    </p>
+
+                </div>
+
+
+                <div class="security-grid">
+
+
+                    <div class="security-service">
+
+                        <div class="security-service-icon">
+
+                            <i class="bi bi-camera-fill"></i>
+
+                        </div>
+
+
+                        <div class="security-service-info">
+
+                            <strong>
+
+                                Face Detection
+
+                            </strong>
+
+
+                            <p>
+
+                                Detects facial landmarks and faces from input.
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="service-online">
+
+                            ONLINE
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-service">
+
+                        <div class="security-service-icon">
+
+                            <i class="bi bi-cpu-fill"></i>
+
+                        </div>
+
+
+                        <div class="security-service-info">
+
+                            <strong>
+
+                                InsightFace Engine
+
+                            </strong>
+
+
+                            <p>
+
+                                Generates 512-dimensional face embeddings.
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="service-online">
+
+                            ONLINE
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-service">
+
+                        <div class="security-service-icon">
+
+                            <i class="bi bi-lock-fill"></i>
+
+                        </div>
+
+
+                        <div class="security-service-info">
+
+                            <strong>
+
+                                SHA-256 Hashing
+
+                            </strong>
+
+
+                            <p>
+
+                                Protects identity records with cryptographic hashes.
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="service-online">
+
+                            ONLINE
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-service">
+
+                        <div class="security-service-icon">
+
+                            <i class="bi bi-boxes"></i>
+
+                        </div>
+
+
+                        <div class="security-service-info">
+
+                            <strong>
+
+                                Blockchain Ledger
+
+                            </strong>
+
+
+                            <p>
+
+                                Provides tamper-evident identity records.
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="service-online">
+
+                            VALID
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-service">
+
+                        <div class="security-service-icon">
+
+                            <i class="bi bi-server"></i>
+
+                        </div>
+
+
+                        <div class="security-service-info">
+
+                            <strong>
+
+                                Flask API
+
+                            </strong>
+
+
+                            <p>
+
+                                Local backend verification service.
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="service-online">
+
+                            ONLINE
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="security-service">
+
+                        <div class="security-service-icon">
+
+                            <i class="bi bi-database-lock"></i>
+
+                        </div>
+
+
+                        <div class="security-service-info">
+
+                            <strong>
+
+                                Biometric Storage
+
+                            </strong>
+
+
+                            <p>
+
+                                Face embeddings remain outside the blockchain.
+
+                            </p>
+
+                        </div>
+
+
+                        <span class="service-online">
+
+                            OFF-CHAIN
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 LOGS SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section"
+                id="logsSection">
+
+
+                <div class="section-title">
+
+                    <small>
+
+                        SYSTEM DIAGNOSTICS
+
+                    </small>
+
+
+                    <h2>
+
+                        System Logs
+
+                    </h2>
+
+
+                    <p>
+
+                        Current application and security service activity.
+
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+
+                    <div class="card-header-modern">
+
+                        <div class="card-heading">
+
+                            <small>
+
+                                LIVE LOG
+
+                            </small>
+
+
+                            <h3>
+
+                                System Activity
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-list">
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="bi bi-check-circle"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+
+                                    Flask API initialized
+
+                                </strong>
+
+                                <p>
+
+                                    Local verification service is running.
+
+                                </p>
+
+                            </div>
+
+                            <span class="activity-time">
+
+                                ONLINE
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="bi bi-cpu"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+
+                                    InsightFace model available
+
+                                </strong>
+
+                                <p>
+
+                                    Buffalo_L face recognition model loaded.
+
+                                </p>
+
+                            </div>
+
+                            <span class="activity-time">
+
+                                READY
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="bi bi-shield-check"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+
+                                    Blockchain integrity check
+
+                                </strong>
+
+                                <p>
+
+                                    Hash-linked ledger verification completed.
+
+                                </p>
+
+                            </div>
+
+                            <span class="activity-time">
+
+                                PASS
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+
+                                <i class="bi bi-database-check"></i>
+
+                            </div>
+
+                            <div class="activity-content">
+
+                                <strong>
+
+                                    Identity registry available
+
+                                </strong>
+
+                                <p>
+
+                                    Registered biometric identities loaded.
+
+                                </p>
+
+                            </div>
+
+                            <span class="activity-time">
+
+                                READY
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SETTINGS SECTION
+            ================================================== -->
+
+            <section
+                class="dashboard-section"
+                id="settingsSection">
+
+
+                <div class="section-title">
+
+                    <small>
+
+                        SYSTEM CONFIGURATION
+
+                    </small>
+
+
+                    <h2>
+
+                        Settings
+
+                    </h2>
+
+
+                    <p>
+
+                        Configure dashboard behaviour and monitoring preferences.
+
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+
+                    <div class="card-header-modern">
+
+                        <div class="card-heading">
+
+                            <small>
+
+                                PREFERENCES
+
+                            </small>
+
+
+                            <h3>
+
+                                Dashboard Settings
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body-modern">
+
+
+                        <div class="settings-list">
+
+
+                            <!-- ANIMATIONS -->
+
+                            <div class="setting-row">
+
+
+                                <div class="setting-info">
+
+                                    <strong>
+
+                                        Dashboard Animations
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        Enable scanning, floating and
+                                        interface animations.
+
+                                    </p>
+
+                                </div>
+
+
+                                <div
+                                    class="toggle active"
+                                    id="animationToggle">
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- NOTIFICATIONS -->
+
+                            <div class="setting-row">
+
+
+                                <div class="setting-info">
+
+                                    <strong>
+
+                                        Security Notifications
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        Display system and blockchain
+                                        security notifications.
+
+                                    </p>
+
+                                </div>
+
+
+                                <div
+                                    class="toggle active"
+                                    id="notificationToggle">
+
+                                </div>
+
+
+                            </div>
+
+
+                            <!-- AUTO REFRESH -->
+
+                            <div class="setting-row">
+
+
+                                <div class="setting-info">
+
+                                    <strong>
+
+                                        Automatic Status Refresh
+
+                                    </strong>
+
+
+                                    <p>
+
+                                        Refresh backend security status
+                                        every 15 seconds.
+
+                                    </p>
+
+                                </div>
+
+
+                                <div
+                                    class="toggle active"
+                                    id="refreshToggle">
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="dashboard-footer">
+
+
+                <div class="footer-brand">
+
+                    <i class="bi bi-fingerprint"></i>
+
+                    FaceID Blockchain Verification
+
+                </div>
+
+
+                <div>
+
+                    Secure Biometric Identity Platform
+
+                </div>
+
+
+                <div>
+
+                    InsightFace • SHA-256 • Flask
+
+                </div>
+
+
+            </footer>
+
+
+        </main>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+    class="toast-modern"
+    id="dashboardToast">
+
+    <i class="bi bi-check-lg"></i>
+
+    <div>
+
+        <strong>Success</strong>
+
+        <p>Operation completed.</p>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     BOOTSTRAP JS
+====================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =====================================================
+     DASHBOARD JS
+====================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+
+<!-- =====================================================
+     SMALL INDEX-SPECIFIC FIXES
+====================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /*
+       View All button inside Identity Registry
+    */
+
+    document
+        .querySelectorAll("[data-section-link]")
+        .forEach(function (link) {
+
+            link.addEventListener("click", function (event) {
+
+                event.preventDefault();
+
+                const section =
+                    this.getAttribute("data-section-link");
+
+                const target =
+                    document.getElementById(section);
+
+                if (!target) {
+                    return;
+                }
+
+
+                document
+                    .querySelectorAll(".dashboard-section")
+                    .forEach(function (item) {
+
+                        item.classList.remove("active");
+
+                    });
+
+
+                document
+                    .querySelectorAll(".sidebar-link")
+                    .forEach(function (item) {
+
+                        item.classList.remove("active");
+
+                    });
+
+
+                target.classList.add("active");
+
+
+                const sidebarLink =
+                    document.querySelector(
+                        '.sidebar-link[data-section="' +
+                        section +
+                        '"]'
+                    );
+
+
+                if (sidebarLink) {
+
+                    sidebarLink.classList.add("active");
+
+                }
+
+
+                const breadcrumb =
+                    document.getElementById(
+                        "breadcrumbCurrent"
+                    );
+
+
+                if (breadcrumb) {
+
+                    breadcrumb.textContent =
+                        "Identity Registry";
+
+                }
+
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            });
+
+        });
+
+
+    /*
+       Start verification button
+    */
+
+    document
+        .querySelectorAll(".start-verification")
+        .forEach(function (button) {
+
+            button.addEventListener("click", function () {
+
+                window.location.href = "/verify";
+
+            });
+
+        });
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>

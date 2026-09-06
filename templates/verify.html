@@ -1,0 +1,2526 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Verify Identity | FaceID Blockchain</title>
+
+<!-- Bootstrap -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Main CSS -->
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+```
+
+</head>
+
+<body class="verify-page">
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar face-navbar">
+
+```
+<div class="container-fluid navbar-inner">
+
+    <!-- BRAND -->
+
+    <a href="/"
+       class="navbar-brand face-brand">
+
+        <span class="brand-icon">
+            <i class="bi bi-fingerprint"></i>
+        </span>
+
+        <span>
+            Face<span>ID</span>
+        </span>
+
+    </a>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="navbar-nav face-nav">
+
+        <a class="nav-link"
+           href="/">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+
+            Dashboard
+
+        </a>
+
+
+        <a class="nav-link"
+           href="/register">
+
+            <i class="bi bi-person-plus-fill"></i>
+
+            Register
+
+        </a>
+
+
+        <a class="nav-link active"
+           href="/verify">
+
+            <i class="bi bi-shield-check"></i>
+
+            Verify
+
+        </a>
+
+    </div>
+
+
+    <!-- STATUS -->
+
+    <div class="navbar-status">
+
+        <span class="online-dot"></span>
+
+        System Online
+
+    </div>
+
+</div>
+```
+
+</nav>
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main class="container-fluid verify-main">
+
+```
+<!-- PAGE HEADER -->
+
+<section class="verify-header">
+
+    <div>
+
+        <div class="verify-eyebrow">
+
+            <span class="pulse-dot"></span>
+
+            LIVE BIOMETRIC VERIFICATION
+
+        </div>
+
+
+        <h1>
+
+            Verify
+
+            <span>Identity</span>
+
+        </h1>
+
+
+        <p>
+
+            Verify a registered identity using AI-powered
+            facial recognition and blockchain integrity validation.
+
+        </p>
+
+    </div>
+
+
+    <div class="security-status">
+
+        <div class="security-icon">
+
+            <i class="bi bi-shield-lock-fill"></i>
+
+        </div>
+
+        <div>
+
+            <small>SECURITY STATUS</small>
+
+            <strong>PROTECTED</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VERIFICATION GRID
+===================================================== -->
+
+<section class="verification-layout">
+
+
+    <!-- =================================================
+         LEFT : CAMERA / UPLOAD
+    ================================================= -->
+
+    <div class="verification-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <span class="card-label">
+                    IDENTITY VERIFICATION
+                </span>
+
+                <h2>
+                    Face Recognition
+                </h2>
+
+            </div>
+
+
+            <div class="card-icon blue">
+
+                <i class="bi bi-person-bounding-box"></i>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CAMERA -->
+
+        <div class="camera-container-large"
+             id="cameraContainer">
+
+           <video id="camera"
+            autoplay
+            muted
+           playsinline
+           width="100%"
+           height="100%">
+          </video>
+
+
+            <!-- CAMERA PLACEHOLDER -->
+
+            <div class="camera-placeholder"
+                 id="cameraPlaceholder">
+
+                <div class="camera-placeholder-icon">
+
+                    <i class="bi bi-camera-video"></i>
+
+                </div>
+
+                <h3>
+                    Camera Ready
+                </h3>
+
+                <p>
+                    Start the camera or upload an image
+                    to verify an identity.
+                </p>
+
+            </div>
+
+
+            <!-- CAMERA OVERLAY -->
+
+            <div class="camera-overlay">
+
+                <div class="corner top-left"></div>
+
+                <div class="corner top-right"></div>
+
+                <div class="corner bottom-left"></div>
+
+                <div class="corner bottom-right"></div>
+
+                <div class="camera-scan"></div>
+
+            </div>
+
+
+            <!-- CAMERA STATUS -->
+
+            <div class="camera-status"
+                 id="cameraStatus">
+
+                <span></span>
+
+                CAMERA OFF
+
+            </div>
+
+        </div>
+
+
+
+        <canvas id="canvas"
+                hidden>
+        </canvas>
+
+
+
+        <!-- =================================================
+             ACTION BUTTONS
+        ================================================= -->
+
+        <div class="verification-actions">
+
+
+            <!-- START CAMERA -->
+
+            <button
+                type="button"
+                class="verify-action primary"
+                id="startCamera">
+
+                <i class="bi bi-camera-video"></i>
+
+                <span>Start Camera</span>
+
+            </button>
+
+
+
+            <!-- VERIFY CAMERA -->
+
+            <button
+                type="button"
+                class="verify-action success"
+                id="verifyCamera"
+                disabled>
+
+                <i class="bi bi-shield-check"></i>
+
+                <span>Verify Face</span>
+
+            </button>
+
+
+
+            <!-- UPLOAD IMAGE -->
+
+            <label
+                class="verify-action upload"
+                for="fileInput">
+
+                <i class="bi bi-cloud-arrow-up"></i>
+
+                <span>Upload Image</span>
+
+            </label>
+
+
+            <input
+                type="file"
+                id="fileInput"
+                accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                hidden>
+
+        </div>
+
+
+
+        <!-- =================================================
+             UPLOAD DROP AREA
+        ================================================= -->
+
+        <div class="upload-area"
+             id="uploadArea">
+
+            <div class="upload-area-icon">
+
+                <i class="bi bi-image"></i>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Upload a face image
+                </strong>
+
+                <p>
+                    JPG, JPEG, PNG or WEBP • Maximum recommended size 10MB
+                </p>
+
+            </div>
+
+
+            <label
+                for="fileInput"
+                class="choose-image-btn">
+
+                <i class="bi bi-folder2-open"></i>
+
+                Choose Image
+
+            </label>
+
+        </div>
+
+
+
+        <!-- =================================================
+             IMAGE PREVIEW
+        ================================================= -->
+
+        <div id="previewBox"
+             class="preview-box d-none">
+
+
+            <div class="preview-image-wrapper">
+
+                <img id="previewImage"
+                     alt="Verification image">
+
+                <button
+                    type="button"
+                    class="remove-image"
+                    id="removeImage">
+
+                    <i class="bi bi-x-lg"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="preview-details">
+
+                <span class="card-label">
+                    SELECTED IMAGE
+                </span>
+
+                <h4>
+                    Verification Image
+                </h4>
+
+                <p id="previewName">
+                    Image selected
+                </p>
+
+
+                <button
+                    type="button"
+                    class="verify-upload-btn"
+                    id="uploadVerify">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    Verify This Face
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INFORMATION
+        ================================================= -->
+
+        <div class="verification-info">
+
+            <div>
+
+                <i class="bi bi-cpu"></i>
+
+                <span>
+                    AI MODEL
+                </span>
+
+                <strong>
+                    InsightFace
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <i class="bi bi-vector-pen"></i>
+
+                <span>
+                    EMBEDDING
+                </span>
+
+                <strong>
+                    512-D
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <i class="bi bi-shield-check"></i>
+
+                <span>
+                    SECURITY
+                </span>
+
+                <strong>
+                    SHA-256
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         RIGHT : RESULT / SYSTEM INFO
+    ================================================= -->
+
+    <div class="verification-side">
+
+
+        <!-- SECURITY CARD -->
+
+        <div class="side-card security-card">
+
+            <div class="side-card-header">
+
+                <div>
+
+                    <span>
+                        SECURITY
+                    </span>
+
+                    <h3>
+                        Verification Process
+                    </h3>
+
+                </div>
+
+                <i class="bi bi-shield-lock-fill"></i>
+
+            </div>
+
+
+            <div class="process-list">
+
+
+                <div class="process-item">
+
+                    <div class="process-number">
+                        01
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Face Detection
+                        </strong>
+
+                        <small>
+                            Detect facial features using AI
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="process-item">
+
+                    <div class="process-number">
+                        02
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Embedding Generation
+                        </strong>
+
+                        <small>
+                            Generate a 512-dimensional vector
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="process-item">
+
+                    <div class="process-number">
+                        03
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Identity Matching
+                        </strong>
+
+                        <small>
+                            Compare against registered identities
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="process-item">
+
+                    <div class="process-number">
+                        04
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Blockchain Validation
+                        </strong>
+
+                        <small>
+                            Verify record integrity
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOADING
+        ================================================= -->
+
+        <div id="loading"
+             class="loading-box d-none">
+
+            <div class="loading-animation">
+
+                <div class="spinner-ring"></div>
+
+                <i class="bi bi-fingerprint"></i>
+
+            </div>
+
+
+            <h3>
+                Verifying Identity
+            </h3>
+
+
+            <p>
+                Detecting face → Generating embedding →
+                Comparing identity → Checking blockchain
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESULT
+        ================================================= -->
+
+        <div id="result"
+             class="verification-result d-none">
+
+
+            <div id="resultIcon"
+                 class="verification-icon">
+
+                <i class="bi bi-shield-check"></i>
+
+            </div>
+
+
+            <span class="result-label">
+                VERIFICATION RESULT
+            </span>
+
+
+            <h2 id="resultTitle">
+            </h2>
+
+
+            <p id="resultMessage">
+            </p>
+
+
+
+            <!-- SIMILARITY -->
+
+            <div class="similarity-container">
+
+                <div class="similarity-header">
+
+                    <span>
+                        FACE SIMILARITY
+                    </span>
+
+                    <strong id="similarity">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        id="similarityBar"
+                        class="progress-bar"
+                        role="progressbar"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="0">
+                    </div>
+
+                </div>
+
+
+                <small>
+
+                    Required threshold:
+
+                    <span id="threshold">
+                        --
+                    </span>
+
+                </small>
+
+            </div>
+
+
+
+            <!-- VERIFICATION DETAILS -->
+
+            <div class="verification-grid">
+
+
+                <div class="verify-item">
+
+                    <i class="bi bi-person-check"></i>
+
+                    <div>
+
+                        <span>
+                            IDENTITY
+                        </span>
+
+                        <strong id="identity">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="verify-item">
+
+                    <i class="bi bi-link-45deg"></i>
+
+                    <div>
+
+                        <span>
+                            BLOCKCHAIN
+                        </span>
+
+                        <strong id="blockchain">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="verify-item">
+
+                    <i class="bi bi-cpu"></i>
+
+                    <div>
+
+                        <span>
+                            EMBEDDING
+                        </span>
+
+                        <strong>
+                            512-D
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="verify-item">
+
+                    <i class="bi bi-camera"></i>
+
+                    <div>
+
+                        <span>
+                            DETECTION
+                        </span>
+
+                        <strong id="confidence">
+                            --
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HASH -->
+
+            <div class="hash-box">
+
+                <span>
+                    VERIFICATION EMBEDDING HASH
+                </span>
+
+                <code id="verificationHash">
+                    --
+                </code>
+
+            </div>
+
+
+
+            <!-- VERIFY AGAIN -->
+
+            <button
+                type="button"
+                class="verify-again"
+                id="verifyAgain">
+
+                <i class="bi bi-arrow-repeat"></i>
+
+                Verify Another Face
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BLOCKCHAIN STATUS
+        ================================================= -->
+
+        <div class="blockchain-status-card">
+
+            <div class="blockchain-icon">
+
+                <i class="bi bi-link-45deg"></i>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    BLOCKCHAIN NETWORK
+                </span>
+
+                <strong>
+                    Integrity Protected
+                </strong>
+
+                <small>
+                    Identity records are verified using
+                    cryptographic hashes.
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER SECURITY
+===================================================== -->
+
+<section class="verification-footer">
+
+    <div>
+
+        <i class="bi bi-shield-check"></i>
+
+        <div>
+
+            <strong>
+                Privacy Protected
+            </strong>
+
+            <span>
+                Biometric embeddings remain off-chain.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div>
+
+        <i class="bi bi-lock-fill"></i>
+
+        <div>
+
+            <strong>
+                Secure Processing
+            </strong>
+
+            <span>
+                Verification requests are processed securely.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div>
+
+        <i class="bi bi-database-lock"></i>
+
+        <div>
+
+            <strong>
+                Tamper Evident
+            </strong>
+
+            <span>
+                Blockchain records protect identity integrity.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+"use strict";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const video = document.getElementById("camera");
+
+const canvas = document.getElementById("canvas");
+
+const startButton = document.getElementById("startCamera");
+
+const verifyButton = document.getElementById("verifyCamera");
+
+const fileInput = document.getElementById("fileInput");
+
+const previewBox = document.getElementById("previewBox");
+
+const previewImage = document.getElementById("previewImage");
+
+const previewName = document.getElementById("previewName");
+
+const uploadVerify = document.getElementById("uploadVerify");
+
+const removeImage = document.getElementById("removeImage");
+
+const uploadArea = document.getElementById("uploadArea");
+
+const cameraPlaceholder = document.getElementById("cameraPlaceholder");
+
+const cameraStatus = document.getElementById("cameraStatus");
+
+const loading = document.getElementById("loading");
+
+const result = document.getElementById("result");
+
+const verifyAgain = document.getElementById("verifyAgain");
+
+const resultIcon = document.getElementById("resultIcon");
+
+const resultTitle = document.getElementById("resultTitle");
+
+const resultMessage = document.getElementById("resultMessage");
+
+const similarityElement = document.getElementById("similarity");
+
+const similarityBar = document.getElementById("similarityBar");
+
+const thresholdElement = document.getElementById("threshold");
+
+const identityElement = document.getElementById("identity");
+
+const blockchainElement = document.getElementById("blockchain");
+
+const confidenceElement = document.getElementById("confidence");
+
+const verificationHashElement =
+    document.getElementById("verificationHash");
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let stream = null;
+
+let selectedFile = null;
+
+let previewURL = null;
+
+let verificationInProgress = false;
+
+
+/* =========================================================
+   CAMERA STATUS
+========================================================= */
+
+function setCameraStatus(active, message) {
+
+    if (active) {
+
+        cameraStatus.innerHTML =
+            '<span class="active"></span> ' +
+            (message || "CAMERA ACTIVE");
+
+        cameraStatus.classList.add("active");
+
+    } else {
+
+        cameraStatus.innerHTML =
+            "<span></span> " +
+            (message || "CAMERA OFF");
+
+        cameraStatus.classList.remove("active");
+
+    }
+
+}
+
+
+/* =========================================================
+   START CAMERA - FIXED
+========================================================= */
+
+startButton.addEventListener("click", async function () {
+
+    console.log("START CAMERA BUTTON CLICKED");
+
+    try {
+
+        if (!navigator.mediaDevices) {
+            alert("navigator.mediaDevices is not available.");
+            console.error("mediaDevices is unavailable");
+            return;
+        }
+
+        if (!navigator.mediaDevices.getUserMedia) {
+            alert("getUserMedia is not available.");
+            console.error("getUserMedia is unavailable");
+            return;
+        }
+
+        console.log("Requesting camera permission...");
+
+        const cameraStream =
+            await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: "user",
+                    width: {
+                        ideal: 1280
+                    },
+                    height: {
+                        ideal: 720
+                    }
+                },
+                audio: false
+            });
+
+        console.log("CAMERA STREAM RECEIVED", cameraStream);
+
+        stream = cameraStream;
+
+        /* Connect camera to video */
+        video.srcObject = stream;
+
+        /* Make video visible */
+        video.style.display = "block";
+        video.style.visibility = "visible";
+        video.style.opacity = "1";
+
+        /* Hide Camera Ready */
+        cameraPlaceholder.style.display = "none";
+
+        /* Camera status */
+        cameraStatus.innerHTML =
+            '<span class="active"></span> CAMERA ACTIVE';
+
+        cameraStatus.classList.add("active");
+
+        /* Update button */
+        startButton.innerHTML =
+            '<i class="bi bi-camera-video-fill"></i>' +
+            '<span>Camera Active</span>';
+
+        startButton.classList.add("camera-active");
+
+        /* Enable verification */
+        verifyButton.disabled = false;
+
+        /* Start video */
+        await video.play();
+
+        console.log(
+            "VIDEO PLAYING:",
+            video.videoWidth,
+            "x",
+            video.videoHeight
+        );
+
+    } catch (error) {
+
+        console.error("========== CAMERA ERROR ==========");
+        console.error("Name:", error.name);
+        console.error("Message:", error.message);
+        console.error("Full error:", error);
+
+        alert(
+            "Camera could not be started.\n\n" +
+            "Error: " +
+            error.name +
+            "\n\n" +
+            error.message
+        );
+    }
+
+});
+
+/* =========================================================
+   STOP CAMERA
+========================================================= */
+
+function stopCamera() {
+
+    if (stream) {
+
+        stream
+            .getTracks()
+            .forEach(
+                track => track.stop()
+            );
+
+        stream = null;
+
+    }
+
+
+    if (video) {
+
+        video.srcObject = null;
+
+    }
+
+
+    if (verifyButton) {
+
+        verifyButton.disabled = true;
+
+    }
+
+
+    if (startButton) {
+
+        startButton.disabled = false;
+
+        startButton.innerHTML =
+            '<i class="bi bi-camera-video"></i>' +
+            '<span>Start Camera</span>';
+
+        startButton.classList.remove(
+            "camera-active"
+        );
+
+    }
+
+
+    if (cameraPlaceholder) {
+
+        cameraPlaceholder.style.display =
+            "flex";
+
+    }
+
+
+    setCameraStatus(
+        false,
+        "CAMERA OFF"
+    );
+
+}
+
+
+/* =========================================================
+   VERIFY CAMERA
+========================================================= */
+
+verifyButton.addEventListener(
+    "click",
+    function () {
+
+        if (verificationInProgress) {
+            return;
+        }
+
+
+        if (!stream) {
+
+            alert(
+                "Please start the camera first."
+            );
+
+            return;
+        }
+
+
+        if (
+            !video.videoWidth ||
+            !video.videoHeight
+        ) {
+
+            alert(
+                "Camera is still starting. " +
+                "Please wait a moment and try again."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            canvas.width =
+                video.videoWidth;
+
+            canvas.height =
+                video.videoHeight;
+
+
+            const context =
+                canvas.getContext("2d");
+
+
+            if (!context) {
+
+                alert(
+                    "Unable to capture camera image."
+                );
+
+                return;
+            }
+
+
+            context.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            canvas.toBlob(
+
+                function (blob) {
+
+                    if (!blob) {
+
+                        alert(
+                            "Unable to capture camera image."
+                        );
+
+                        return;
+                    }
+
+
+                    const file =
+                        new File(
+                            [blob],
+                            "webcam_verification.jpg",
+                            {
+                                type: "image/jpeg"
+                            }
+                        );
+
+
+                    sendVerification(file);
+
+                },
+
+                "image/jpeg",
+
+                0.95
+
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Camera capture error:",
+                error
+            );
+
+            alert(
+                "Unable to capture the camera image."
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   FILE UPLOAD
+========================================================= */
+
+fileInput.addEventListener(
+    "change",
+    function () {
+
+        const file =
+            this.files &&
+            this.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        /* Allowed MIME types */
+
+        const allowedTypes = [
+
+            "image/jpeg",
+            "image/jpg",
+            "image/png",
+            "image/webp"
+
+        ];
+
+
+        /* Allowed extensions */
+
+        const allowedExtensions = [
+
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp"
+
+        ];
+
+
+        const fileName =
+            file.name.toLowerCase();
+
+
+        const hasValidExtension =
+            allowedExtensions.some(
+                extension =>
+                    fileName.endsWith(extension)
+            );
+
+
+        if (
+            !allowedTypes.includes(file.type) &&
+            !hasValidExtension
+        ) {
+
+            alert(
+                "Please select a JPG, JPEG, PNG or WEBP image."
+            );
+
+
+            fileInput.value = "";
+
+            return;
+        }
+
+
+        /* Maximum size = 10 MB */
+
+        const maxSize =
+            10 * 1024 * 1024;
+
+
+        if (file.size > maxSize) {
+
+            alert(
+                "Image is too large. " +
+                "Please select an image under 10MB."
+            );
+
+
+            fileInput.value = "";
+
+            return;
+        }
+
+
+        selectedFile =
+            file;
+
+
+        /* Release old preview URL */
+
+        if (previewURL) {
+
+            URL.revokeObjectURL(
+                previewURL
+            );
+
+        }
+
+
+        /* Create new preview URL */
+
+        previewURL =
+            URL.createObjectURL(
+                file
+            );
+
+
+        previewImage.src =
+            previewURL;
+
+
+        previewName.textContent =
+            file.name;
+
+
+        /* Show preview */
+
+        previewBox.classList.remove(
+            "d-none"
+        );
+
+
+        uploadArea.classList.add(
+            "selected"
+        );
+
+
+        /* Scroll preview into view */
+
+        setTimeout(
+            function () {
+
+                previewBox.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "nearest"
+
+                });
+
+            },
+            100
+        );
+
+    }
+);
+
+
+/* =========================================================
+   VERIFY UPLOADED IMAGE
+========================================================= */
+
+uploadVerify.addEventListener(
+    "click",
+    function () {
+
+        if (verificationInProgress) {
+            return;
+        }
+
+
+        if (!selectedFile) {
+
+            alert(
+                "Please select an image first."
+            );
+
+            return;
+        }
+
+
+        sendVerification(
+            selectedFile
+        );
+
+    }
+);
+
+
+/* =========================================================
+   REMOVE IMAGE
+========================================================= */
+
+removeImage.addEventListener(
+    "click",
+    function () {
+
+        clearSelectedImage();
+
+    }
+);
+
+
+function clearSelectedImage() {
+
+    selectedFile =
+        null;
+
+
+    fileInput.value =
+        "";
+
+
+    if (previewURL) {
+
+        URL.revokeObjectURL(
+            previewURL
+        );
+
+        previewURL =
+            null;
+
+    }
+
+
+    previewImage.src =
+        "";
+
+
+    previewName.textContent =
+        "";
+
+
+    previewBox.classList.add(
+        "d-none"
+    );
+
+
+    uploadArea.classList.remove(
+        "selected"
+    );
+
+}
+
+
+/* =========================================================
+   SET LOADING STATE
+========================================================= */
+
+function setLoadingState(active) {
+
+    if (active) {
+
+        loading.classList.remove(
+            "d-none"
+        );
+
+
+        startButton.disabled =
+            true;
+
+        verifyButton.disabled =
+            true;
+
+        uploadVerify.disabled =
+            true;
+
+        verificationInProgress =
+            true;
+
+    } else {
+
+        loading.classList.add(
+            "d-none"
+        );
+
+
+        verificationInProgress =
+            false;
+
+
+        resetButtons();
+
+    }
+
+}
+
+
+/* =========================================================
+   RESET BUTTONS
+========================================================= */
+
+function resetButtons() {
+
+    startButton.disabled =
+        false;
+
+
+    verifyButton.disabled =
+        !stream;
+
+
+    uploadVerify.disabled =
+        false;
+
+}
+
+
+/* =========================================================
+   RESET RESULT
+========================================================= */
+
+function resetResult() {
+
+    result.classList.add(
+        "d-none"
+    );
+
+
+    resultIcon.classList.remove(
+        "success",
+        "failed"
+    );
+
+
+    resultIcon.innerHTML =
+        '<i class="bi bi-shield-check"></i>';
+
+
+    resultTitle.textContent =
+        "";
+
+
+    resultMessage.textContent =
+        "";
+
+
+    similarityElement.textContent =
+        "--";
+
+
+    similarityBar.style.width =
+        "0%";
+
+
+    similarityBar.setAttribute(
+        "aria-valuenow",
+        "0"
+    );
+
+
+    thresholdElement.textContent =
+        "--";
+
+
+    identityElement.textContent =
+        "--";
+
+
+    blockchainElement.textContent =
+        "--";
+
+
+    confidenceElement.textContent =
+        "--";
+
+
+    verificationHashElement.textContent =
+        "--";
+
+}
+
+
+/* =========================================================
+   FORMAT PERCENTAGE
+========================================================= */
+
+function formatPercentage(value) {
+
+    const number =
+        Number(value);
+
+
+    if (
+        !Number.isFinite(number) ||
+        number < 0
+    ) {
+
+        return 0;
+
+    }
+
+
+    /*
+       Backend may return:
+       0.85  -> 85%
+       85    -> 85%
+    */
+
+    if (number <= 1) {
+
+        return number * 100;
+
+    }
+
+
+    return number;
+
+}
+
+
+/* =========================================================
+   FORMAT THRESHOLD
+========================================================= */
+
+function formatThreshold(value) {
+
+    const number =
+        Number(value);
+
+
+    if (!Number.isFinite(number)) {
+
+        return "--";
+
+    }
+
+
+    if (number <= 1) {
+
+        return (
+            number * 100
+        ).toFixed(2) + "%";
+
+    }
+
+
+    return number.toFixed(2) + "%";
+
+}
+
+
+/* =========================================================
+   DISPLAY VERIFICATION RESULT
+========================================================= */
+
+function displayVerificationResult(data) {
+
+    result.classList.remove(
+        "d-none"
+    );
+
+
+    /* Remove previous state */
+
+    resultIcon.classList.remove(
+        "success",
+        "failed"
+    );
+
+
+    /* =====================================================
+       VERIFIED
+    ===================================================== */
+
+    if (Boolean(data.verified)) {
+
+        resultIcon.classList.add(
+            "success"
+        );
+
+
+        resultIcon.innerHTML =
+            '<i class="bi bi-shield-check"></i>';
+
+
+        resultTitle.textContent =
+            "FACE VERIFIED";
+
+
+        resultMessage.textContent =
+            data.message ||
+            "Identity confirmed successfully. " +
+            "Blockchain integrity is valid.";
+
+    }
+
+
+    /* =====================================================
+       FAILED
+    ===================================================== */
+
+    else {
+
+        resultIcon.classList.add(
+            "failed"
+        );
+
+
+        resultIcon.innerHTML =
+            '<i class="bi bi-shield-x"></i>';
+
+
+        resultTitle.textContent =
+            "VERIFICATION FAILED";
+
+
+        resultMessage.textContent =
+            data.message ||
+            "The submitted face does not match " +
+            "a registered identity.";
+
+    }
+
+
+    /* =====================================================
+       SIMILARITY
+    ===================================================== */
+
+    const similarityPercent =
+        formatPercentage(
+            data.similarity
+        );
+
+
+    const safeSimilarity =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                similarityPercent
+            )
+        );
+
+
+    similarityElement.textContent =
+        safeSimilarity.toFixed(2) + "%";
+
+
+    similarityBar.style.width =
+        safeSimilarity + "%";
+
+
+    similarityBar.setAttribute(
+        "aria-valuenow",
+        safeSimilarity.toFixed(2)
+    );
+
+
+    /* =====================================================
+       THRESHOLD
+    ===================================================== */
+
+    thresholdElement.textContent =
+        formatThreshold(
+            data.threshold
+        );
+
+
+    /* =====================================================
+       IDENTITY
+    ===================================================== */
+
+    identityElement.textContent =
+        data.identity_id ||
+        data.identity ||
+        "NO MATCH";
+
+
+    /* =====================================================
+       BLOCKCHAIN
+    ===================================================== */
+
+    if (
+        data.blockchain_valid === true ||
+        data.blockchain_valid === "true" ||
+        data.blockchain_valid === 1
+    ) {
+
+        blockchainElement.textContent =
+            "VALID";
+
+    }
+
+    else if (
+        data.blockchain_valid === false ||
+        data.blockchain_valid === "false" ||
+        data.blockchain_valid === 0
+    ) {
+
+        blockchainElement.textContent =
+            "INVALID";
+
+    }
+
+    else {
+
+        blockchainElement.textContent =
+            "NOT CHECKED";
+
+    }
+
+
+    /* =====================================================
+       DETECTION CONFIDENCE
+    ===================================================== */
+
+    const confidence =
+        data.detection_confidence;
+
+
+    if (
+        confidence !== undefined &&
+        confidence !== null &&
+        confidence !== ""
+    ) {
+
+        const confidenceNumber =
+            Number(confidence);
+
+
+        if (Number.isFinite(confidenceNumber)) {
+
+            /*
+               If backend returns 0.95,
+               display 95.00%.
+
+               If backend returns 95,
+               display 95.00%.
+            */
+
+            const confidencePercent =
+                formatPercentage(
+                    confidenceNumber
+                );
+
+
+            confidenceElement.textContent =
+                confidencePercent.toFixed(2) + "%";
+
+        }
+
+        else {
+
+            confidenceElement.textContent =
+                String(confidence);
+
+        }
+
+    }
+
+    else {
+
+        confidenceElement.textContent =
+            "DETECTED";
+
+    }
+
+
+    /* =====================================================
+       HASH
+    ===================================================== */
+
+    verificationHashElement.textContent =
+        data.verification_embedding_hash ||
+        data.embedding_hash ||
+        data.hash ||
+        "Not available";
+
+}
+
+
+/* =========================================================
+   SEND VERIFICATION
+========================================================= */
+
+async function sendVerification(file) {
+
+    if (!file) {
+
+        alert(
+            "No image selected."
+        );
+
+        return;
+    }
+
+
+    if (verificationInProgress) {
+        return;
+    }
+
+/* Show loading */
+
+setLoadingState(true);
+/* Keep live camera visible during verification */
+
+if (video && stream) {
+
+    video.style.display = "block";
+
+    video.style.visibility = "visible";
+
+    video.style.opacity = "1";
+
+    if (cameraPlaceholder) {
+        cameraPlaceholder.style.display = "none";
+    }
+
+    setCameraStatus(
+        true,
+        "VERIFYING..."
+    );
+}
+
+result.classList.add("d-none");
+
+previewBox.classList.add("d-none");
+
+
+/* Create form data */
+
+const formData = new FormData();
+
+formData.append(
+    "image",
+    file
+);
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/verify",
+                {
+
+                    method: "POST",
+
+                    body: formData
+
+                }
+            );
+
+
+        /*
+           First check HTTP status.
+        */
+
+        if (!response.ok) {
+
+            let serverMessage =
+                "Verification server returned HTTP " +
+                response.status;
+
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+
+                if (errorData.message) {
+
+                    serverMessage =
+                        errorData.message;
+
+                }
+
+            }
+
+            catch (jsonError) {
+
+                console.warn(
+                    "Server error was not JSON:",
+                    jsonError
+                );
+
+            }
+
+
+            throw new Error(
+                serverMessage
+            );
+
+        }
+
+
+        /*
+           Convert response to JSON.
+        */
+
+        let data;
+
+
+        try {
+
+            data =
+                await response.json();
+
+        }
+
+        catch (jsonError) {
+
+            console.error(
+                "Invalid JSON response:",
+                jsonError
+            );
+
+
+            throw new Error(
+                "The verification server returned " +
+                "an invalid response."
+            );
+
+        }
+
+
+        /* Make sure response is an object */
+
+        if (
+            !data ||
+            typeof data !== "object"
+        ) {
+
+            throw new Error(
+                "Invalid verification response."
+            );
+
+        }
+
+
+        /* =================================================
+           BACKEND REPORTED FAILURE
+        ================================================= */
+
+        if (data.success === false) {
+
+            loading.classList.add(
+                "d-none"
+            );
+
+
+            verificationInProgress =
+                false;
+
+
+            resetButtons();
+
+
+            alert(
+                data.message ||
+                "Verification failed."
+            );
+
+
+            return;
+
+        }
+
+
+        /*
+           If backend doesn't send success at all,
+           we still allow the verification result if
+           the response contains verification data.
+        */
+
+        if (
+            data.success === undefined &&
+            data.verified === undefined
+        ) {
+
+            throw new Error(
+                "Verification response is missing required data."
+            );
+
+        }
+
+
+        /* Hide loading */
+
+        loading.classList.add(
+            "d-none"
+        );
+
+
+        /* Display result */
+
+        displayVerificationResult(
+            data
+        );
+
+
+        /* Save verification history */
+
+        saveVerificationHistory(
+            data
+        );
+
+
+        /* Allow another verification */
+
+        verificationInProgress =
+            false;
+
+
+        resetButtons();
+
+
+        /* Scroll to result */
+
+        setTimeout(
+            function () {
+
+                result.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "start"
+
+                });
+
+            },
+            200
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Verification error:",
+            error
+        );
+
+
+        loading.classList.add(
+            "d-none"
+        );
+
+
+        verificationInProgress =
+            false;
+
+
+        resetButtons();
+
+
+        alert(
+            error.message ||
+            "Unable to connect to the verification server. " +
+            "Make sure your Flask application is running."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   VERIFY AGAIN
+========================================================= */
+
+verifyAgain.addEventListener(
+    "click",
+    function () {
+
+        resetVerificationPage();
+
+    }
+);
+
+
+function resetVerificationPage() {
+
+    /* Hide result */
+
+    resetResult();
+
+
+    /* Clear selected image */
+
+    clearSelectedImage();
+
+
+    /* Stop camera */
+
+    stopCamera();
+
+
+    /* Reset loading */
+
+    loading.classList.add(
+        "d-none"
+    );
+
+
+    verificationInProgress =
+        false;
+
+
+    resetButtons();
+
+
+    /* Scroll to top */
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   VERIFICATION HISTORY
+========================================================= */
+
+function saveVerificationHistory(data) {
+
+    try {
+
+        const storedHistory =
+            localStorage.getItem(
+                "faceVerificationHistory"
+            );
+
+
+        let history = [];
+
+
+        if (storedHistory) {
+
+            try {
+
+                history =
+                    JSON.parse(
+                        storedHistory
+                    );
+
+            }
+
+            catch (parseError) {
+
+                console.warn(
+                    "Existing verification history is invalid. " +
+                    "Starting new history.",
+                    parseError
+                );
+
+                history = [];
+
+            }
+
+        }
+
+
+        if (!Array.isArray(history)) {
+
+            history = [];
+
+        }
+
+
+        history.unshift({
+
+            identity:
+                data.identity_id ||
+                data.identity ||
+                "NO MATCH",
+
+            verified:
+                Boolean(data.verified),
+
+            similarity:
+                data.similarity ??
+                null,
+
+            threshold:
+                data.threshold ??
+                null,
+
+            blockchain_valid:
+                data.blockchain_valid ??
+                null,
+
+            timestamp:
+                new Date().toISOString()
+
+        });
+
+
+        /*
+           Keep only latest 20 records.
+        */
+
+        history =
+            history.slice(
+                0,
+                20
+            );
+
+
+        localStorage.setItem(
+
+            "faceVerificationHistory",
+
+            JSON.stringify(
+                history
+            )
+
+        );
+
+    }
+
+    catch (error) {
+
+        console.warn(
+            "Could not save verification history:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   PAGE CLEANUP
+========================================================= */
+
+window.addEventListener(
+    "beforeunload",
+    function () {
+
+        stopCamera();
+
+
+        if (previewURL) {
+
+            URL.revokeObjectURL(
+                previewURL
+            );
+
+            previewURL =
+                null;
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIAL PAGE STATE
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        setCameraStatus(
+            false,
+            "CAMERA OFF"
+        );
+
+
+        resetResult();
+
+
+        loading.classList.add(
+            "d-none"
+        );
+
+
+        resetButtons();
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

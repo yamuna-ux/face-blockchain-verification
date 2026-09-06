@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Face images / uploaded images
+input/*.jpg
+input/*.jpeg
+input/*.png
+input/*.webp
+
+# Biometric / generated data
+output/*.json
+
+# Logs
+*.log
+
+# Testing / cache
+.pytest_cache/
+.coverage
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+*.tmp
+*.temp
