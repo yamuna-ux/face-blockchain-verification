@@ -4,7 +4,7 @@ import os
 import hashlib
 from insightface.app import FaceAnalysis
 
-IMAGE_PATH = "input/test_image.jpg"
+IMAGE_PATH = "input/test1.jpg"
 OUTPUT_PATH = "output/face_embedding.json"
 
 

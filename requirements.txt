@@ -4,3 +4,5 @@ opencv-python
 insightface
 onnxruntime
 gunicorn
+serpapi
+python-dotenv

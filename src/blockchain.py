@@ -138,3 +138,43 @@ def get_registration_blocks():
         for block in chain
         if block.get("type") == "FACE_REGISTRATION"
     ]
+
+def register_social_match(
+    identity_id,
+    platform,
+    title,
+    url,
+    match_type="unknown",
+    search_timestamp=None
+):
+
+    chain = load_blockchain()
+
+    previous_block = chain[-1]
+
+    if search_timestamp is None:
+        search_timestamp = datetime.now().isoformat()
+
+    block = {
+        "index": len(chain),
+        "timestamp": datetime.now().isoformat(),
+        "type": "SOCIAL_MEDIA_MATCH",
+
+        "data": {
+            "identity_id": identity_id,
+            "platform": platform,
+            "title": title,
+            "url": url,
+            "search_timestamp": search_timestamp
+        },
+
+        "previous_hash": previous_block["hash"]
+    }
+
+    block["hash"] = calculate_hash(block)
+
+    chain.append(block)
+
+    save_blockchain(chain)
+
+    return block
